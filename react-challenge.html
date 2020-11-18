@@ -23,6 +23,12 @@ HINT: Check the console in the browser developer tools for errors. -->
     // No need to change anything ABOVE this line ^
 
 
+    // First: I had to wrap whats in the return (<> around the whole return </>)
+
+    // Second: handleMoodOptions wasnt defined proplerly, I had jhelp from my friend and after a long time looking at it, we werent calling it properly with this.handleMoodOptions in the button.
+
+    // Third: mood wasnt being defined properly and needed a this.state.moods[randomText] I also got help with that, but the notice helped with that fairly easy once I had the right guidance.
+
 
       class App extends React.Component{
         constructor(props){
@@ -35,23 +41,26 @@ HINT: Check the console in the browser developer tools for errors. -->
 
         handleMoodOptions = () => {
           let randomIndex = Math.floor(Math.random() * this.state.moods.length )
-          this.setState({ currentMood: moods[randomIndex] })
+          this.setState({ currentMood: this.state.moods[randomIndex] })
+          // 
         }
 
         render(){
           return(
+           <> 
               <h1>Welcome to the Mood Meter App</h1>
 
               <h3>Mood Options:</h3>
-
+          
               <div style={{ fontSize: "40px", height: "50px"}}>
                 { this.state.currentMood }
               </div>
 
-              <button onClick={ handleMoodOptions }>
+              <button onClick={ this.handleMoodOptions }>
+              
                 Click Here For Next Mood option
               </button>
-
+           </>
           )
         }
       }
